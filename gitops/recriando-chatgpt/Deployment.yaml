@@ -11,6 +11,10 @@ spec:
   selector:
     matchLabels:
       app: recriando-chatgpt
+  template:
+    metadata:
+      labels:
+        app: recriando-chatgpt
     spec:
       containers:
       - name: recriando-chatgpt
@@ -25,8 +29,8 @@ spec:
         - name: DATABASE_PASSWORD
           value: postgres       
         - name: DATABASE_NAME
-          value: chatgpt_clone                            
-          ports:
+          value: chatgpt_clone
+        ports:
         - containerPort: 3000
           name: http
         resources:
@@ -54,6 +58,5 @@ spec:
             path: /
           failureThreshold: 10
           initialDelaySeconds: 70
-        env:
         - name: NODE_ENV
           value: production
