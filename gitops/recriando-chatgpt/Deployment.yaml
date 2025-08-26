@@ -29,7 +29,7 @@ spec:
     spec:
       containers:
         - image: viniciusfca/recriando-chatgpt:v0.0.1
-          imagePullPolicy: Never
+          imagePullPolicy: IfNotPresent
           livenessProbe:
             failureThreshold: 3
             httpGet:
