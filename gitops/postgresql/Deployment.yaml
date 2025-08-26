@@ -27,7 +27,7 @@ spec:
           protocol: TCP
         env:
         - name: POSTGRES_DB
-          value: "chatgpt_clone"
+          value: "postgres"
         - name: POSTGRES_USER
           value: "postgres"
         - name: POSTGRES_PASSWORD
