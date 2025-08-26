@@ -20,7 +20,6 @@ spec:
       - name: recriando-chatgpt
         image: viniciusfcam/recriando-chatgpt:v0.0.1
         imagePullPolicy: Always
-
         env:
         - name: DATABASE_HOST
           value: postgres.postgres.svc.cluster.local
@@ -30,6 +29,8 @@ spec:
           value: postgres       
         - name: DATABASE_NAME
           value: chatgpt_clone
+        - name: NODE_ENV
+          value: production
         ports:
         - containerPort: 3000
           name: http
@@ -58,5 +59,3 @@ spec:
             path: /
           failureThreshold: 10
           initialDelaySeconds: 70
-        - name: NODE_ENV
-          value: production
