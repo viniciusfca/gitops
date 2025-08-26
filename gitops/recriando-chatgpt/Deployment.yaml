@@ -1,64 +1,49 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  annotations:
-    deployment.kubernetes.io/revision: "18"
-    deployment.updated: "2025-08-19T23:59:22-03:00"
-    deployment.version: v20250819-235907
-  labels:
-    app: recriando-chatgpt
   name: recriando-chatgpt
   namespace: recriando-chatgpt
 spec:
-  replicas: 1
+  strategy:
+    rollingUpdate:
+      maxSurge: 100%
+      maxUnavailable: 0%
   selector:
     matchLabels:
       app: recriando-chatgpt
-  strategy:
-    rollingUpdate:
-      maxSurge: 25%
-      maxUnavailable: 25%
-    type: RollingUpdate
-  template:
-    metadata:
-      annotations:
-        kubectl.kubernetes.io/restartedAt: "2025-08-19T23:59:22-03:00"
-      creationTimestamp: null
-      labels:
-        app: recriando-chatgpt
     spec:
       containers:
-        - image: viniciusfca/recriando-chatgpt:v0.0.1
-          imagePullPolicy: IfNotPresent
-          livenessProbe:
-            failureThreshold: 3
-            httpGet:
-              path: /
-              port: 3000
-              scheme: HTTP
-            initialDelaySeconds: 30
-            periodSeconds: 10
-            successThreshold: 1
-            timeoutSeconds: 1
-          name: backend
-          ports:
-          - containerPort: 3000
-            name: http
-            protocol: TCP
-          readinessProbe:
-            failureThreshold: 3
-            httpGet:
-              path: /
-              port: 3000
-              scheme: HTTP
-            initialDelaySeconds: 5
-            periodSeconds: 5
-            successThreshold: 1
-            timeoutSeconds: 1
-          resources:
-            limits:
-              cpu: 500m
-              memory: 512Mi
-            requests:
-              cpu: 100m
-              memory: 256Mi
+      - name: recriando-chatgpt
+        image: viniciusfcam/recriando-chatgpt:v0.0.1
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 3000
+          name: http
+        resources:
+          requests:
+            memory: 128Mi
+            cpu: 100m
+          limits:
+            memory: 2Gi
+            cpu: 2048m
+        livenessProbe:
+          httpGet:
+            port: 3000
+            path: /
+          failureThreshold: 10
+          initialDelaySeconds: 70
+        startupProbe:
+          httpGet:
+            path: /
+            port: 3000
+          failureThreshold: 10
+          initialDelaySeconds: 70
+        readinessProbe:
+          httpGet:
+            port: 3000
+            path: /
+          failureThreshold: 10
+          initialDelaySeconds: 70
+        env:
+        - name: NODE_ENV
+          value: production
