@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Debug Layout</title>
+    <style>
+        body { margin: 0; font-family: Arial; }
+        .container { height: 100vh; display: flex; background: #f0f0f0; }
+        .sidebar { width: 300px; background: #1a1a1a; color: white; padding: 20px; }
+        .main { flex: 1; display: flex; flex-direction: column; }
+        .content { flex: 1; display: flex; align-items: center; justify-content: center; }
+        .input-area { padding: 20px; background: white; border-top: 1px solid #ccc; }
+        .input-field { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px; }
+        .button { background: #007bff; color: white; padding: 10px 20px; border: none; border-radius: 5px; margin-left: 10px; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="sidebar">
+            <h2>ChatGPT Clone</h2>
+            <p>Sidebar está visível</p>
+            <button class="button">Nova Conversa</button>
+        </div>
+        <div class="main">
+            <div class="content">
+                <div style="text-align: center;">
+                    <h1>ChatGPT Clone</h1>
+                    <p>Como posso ajudá-lo hoje?</p>
+                </div>
+            </div>
+            <div class="input-area">
+                <input type="text" class="input-field" placeholder="Digite sua mensagem..." />
+                <button class="button">Enviar</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

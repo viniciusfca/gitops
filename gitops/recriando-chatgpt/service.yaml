@@ -1,0 +1,15 @@
+
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: recriando-chatgpt
+  name: recriando-chatgpt
+  namespace: recriando-chatgpt
+spec:
+  ports:
+  - name: http-api
+    port: 3000
+    protocol: TCP
+  selector:
+    app: recriando-chatgpt

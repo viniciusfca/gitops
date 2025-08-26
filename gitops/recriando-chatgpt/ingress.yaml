@@ -1,0 +1,20 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    nginx.ingress.kubernetes.io/proxy-body-size: 10m
+  name: recriando-chatgpt
+  namespace: recriando-chatgpt
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: recriando-chatgpt.local
+    http:
+      paths:
+      - backend:
+          service:
+            name: recriando-chatgpt
+            port:
+              number: 80
+        path: /
+        pathType: Prefix
