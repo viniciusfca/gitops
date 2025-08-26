@@ -33,7 +33,7 @@ spec:
           livenessProbe:
             failureThreshold: 3
             httpGet:
-              path: /health
+              path: /
               port: 3000
               scheme: HTTP
             initialDelaySeconds: 30
@@ -48,7 +48,7 @@ spec:
           readinessProbe:
             failureThreshold: 3
             httpGet:
-              path: /health
+              path: /
               port: 3000
               scheme: HTTP
             initialDelaySeconds: 5
