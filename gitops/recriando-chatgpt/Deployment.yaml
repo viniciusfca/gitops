@@ -16,7 +16,17 @@ spec:
       - name: recriando-chatgpt
         image: viniciusfcam/recriando-chatgpt:v0.0.1
         imagePullPolicy: Always
-        ports:
+
+        env:
+        - name: DATABASE_HOST
+          value: postgres.postgres.svc.cluster.local
+        - name: DATABASE_USERNAME
+          value: postgres     
+        - name: DATABASE_PASSWORD
+          value: postgres       
+        - name: DATABASE_NAME
+          value: chatgpt_clone                            
+          ports:
         - containerPort: 3000
           name: http
         resources:
