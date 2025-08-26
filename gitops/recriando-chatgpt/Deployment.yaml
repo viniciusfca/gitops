@@ -22,7 +22,7 @@ spec:
         imagePullPolicy: Always
         env:
         - name: DATABASE_HOST
-          value: postgres.postgres.svc.cluster.local
+          value: postgresql.postgresql.svc.cluster.local
         - name: DATABASE_USERNAME
           value: postgres     
         - name: DATABASE_PASSWORD
