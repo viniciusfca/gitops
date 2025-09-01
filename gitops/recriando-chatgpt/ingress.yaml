@@ -15,6 +15,6 @@ spec:
           service:
             name: recriando-chatgpt
             port:
-              number: 80
+              number: 3000
         path: /
         pathType: Prefix
